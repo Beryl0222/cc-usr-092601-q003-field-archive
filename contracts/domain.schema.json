@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "青年遗产田野资料治理领域事件",
+  "type": "object",
+  "required": [
+    "event_id",
+    "event_type",
+    "aggregate_type",
+    "aggregate_id",
+    "occurred_at",
+    "version",
+    "payload"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "ASSIGNMENT_CLAIMED",
+        "ASSET_UPLOADED",
+        "CONSENT_UPDATED",
+        "REVIEW_COMPLETED",
+        "SNAPSHOT_PUBLISHED"
+      ]
+    },
+    "aggregate_type": {
+      "type": "string",
+      "enum": [
+        "field_assignment",
+        "place_record",
+        "source_asset",
+        "archive_snapshot"
+      ]
+    },
+    "aggregate_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "occurred_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "payload": {
+      "type": "object"
+    }
+  },
+  "payload_required_by_event": {
+    "ASSET_UPLOADED": [
+      "content_hash",
+      "captured_at"
+    ],
+    "CONSENT_UPDATED": [
+      "subject_ref",
+      "scope"
+    ],
+    "SNAPSHOT_PUBLISHED": [
+      "cutoff_at",
+      "visibility"
+    ]
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,9 @@
+{
+  "event_id": "092601-003-sample-001",
+  "event_type": "ASSIGNMENT_CLAIMED",
+  "aggregate_type": "field_assignment",
+  "aggregate_id": "field_archive-001",
+  "occurred_at": "2026-09-25T10:00:00+08:00",
+  "version": 1,
+  "payload": {}
+}
