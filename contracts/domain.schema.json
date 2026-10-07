@@ -19,19 +19,37 @@
     "event_type": {
       "type": "string",
       "enum": [
+        "ASSIGNMENT_REGISTERED",
         "ASSIGNMENT_CLAIMED",
+        "CERTIFICATION_GRANTED",
+        "CERTIFICATION_EXPIRED",
+        "PLACE_NAMED",
+        "PLACE_MERGED",
+        "BOUNDARY_REVISED",
+        "NARRATIVE_RECORDED",
         "ASSET_UPLOADED",
+        "CONSENT_GRANTED",
         "CONSENT_UPDATED",
+        "CONSENT_NARROWED",
+        "CONSENT_EXPIRED",
+        "TRANSCRIPT_VERSIONED",
+        "REVIEW_OPENED",
+        "REVIEW_RETURNED",
         "REVIEW_COMPLETED",
-        "SNAPSHOT_PUBLISHED"
+        "SNAPSHOT_PUBLISHED",
+        "SNAPSHOT_FROZEN"
       ]
     },
     "aggregate_type": {
       "type": "string",
       "enum": [
         "field_assignment",
+        "collector_profile",
         "place_record",
         "source_asset",
+        "consent_record",
+        "transcript",
+        "review_case",
         "archive_snapshot"
       ]
     },
@@ -52,18 +70,104 @@
     }
   },
   "payload_required_by_event": {
-    "ASSET_UPLOADED": [
-      "content_hash",
+    "ASSIGNMENT_REGISTERED": [
+      "assignment_key",
+      "required_certification"
+    ],
+    "ASSIGNMENT_CLAIMED": [
+      "assignment_key",
+      "collector_ref",
+      "certification_id"
+    ],
+    "CERTIFICATION_GRANTED": [
+      "certification_id",
+      "collector_ref",
+      "training_code",
+      "valid_from"
+    ],
+    "CERTIFICATION_EXPIRED": [
+      "certification_id",
+      "expired_at"
+    ],
+    "PLACE_NAMED": [
+      "place_id",
+      "name",
+      "valid_from"
+    ],
+    "PLACE_MERGED": [
+      "surviving_place_id",
+      "merged_place_ids",
+      "effective_at"
+    ],
+    "BOUNDARY_REVISED": [
+      "boundary_ref",
+      "revision_no",
+      "effective_at"
+    ],
+    "NARRATIVE_RECORDED": [
+      "narrative_id",
+      "place_ref",
+      "generation",
       "captured_at"
+    ],
+    "ASSET_UPLOADED": [
+      "business_key",
+      "content_hash",
+      "captured_at",
+      "consent_scope"
+    ],
+    "CONSENT_GRANTED": [
+      "subject_ref",
+      "scope",
+      "granted_at"
     ],
     "CONSENT_UPDATED": [
       "subject_ref",
       "scope"
     ],
+    "CONSENT_NARROWED": [
+      "subject_ref",
+      "scope",
+      "effective_at"
+    ],
+    "CONSENT_EXPIRED": [
+      "subject_ref",
+      "expired_at"
+    ],
+    "TRANSCRIPT_VERSIONED": [
+      "transcript_id",
+      "source_asset_id",
+      "version_no"
+    ],
+    "REVIEW_OPENED": [
+      "review_case_id",
+      "target_ref"
+    ],
+    "REVIEW_RETURNED": [
+      "review_case_id",
+      "reason"
+    ],
+    "REVIEW_COMPLETED": [
+      "review_case_id",
+      "decision"
+    ],
     "SNAPSHOT_PUBLISHED": [
       "cutoff_at",
       "visibility"
+    ],
+    "SNAPSHOT_FROZEN": [
+      "snapshot_id",
+      "reason",
+      "frozen_at"
     ]
   },
+  "scope_enum": [
+    "internal_research",
+    "voice_public",
+    "identity_public",
+    "transcript_public",
+    "image_public",
+    "frozen"
+  ],
   "additionalProperties": false
 }

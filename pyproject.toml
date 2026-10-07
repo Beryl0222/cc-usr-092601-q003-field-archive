@@ -1,5 +1,5 @@
 [project]
 name = "field-archive"
-version = "0.1.0"
-description = "青年遗产田野资料治理领域契约"
+version = "0.2.0"
+description = "青年遗产田野资料治理领域契约与事件溯源服务"
 requires-python = ">=3.11"

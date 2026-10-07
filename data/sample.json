@@ -5,5 +5,9 @@
   "aggregate_id": "field_archive-001",
   "occurred_at": "2026-09-25T10:00:00+08:00",
   "version": 1,
-  "payload": {}
+  "payload": {
+    "assignment_key": "donghu-park-oral-history",
+    "collector_ref": "student-2026-0117",
+    "certification_id": "cert-2026-08-0042"
+  }
 }
