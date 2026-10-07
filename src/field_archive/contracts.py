@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass
 from datetime import datetime
+from pathlib import Path
 from typing import Any, Mapping
 
 
@@ -12,6 +14,12 @@ class ContractIssue:
     field: str
     code: str
     message: str
+
+
+def load_default_schema() -> dict[str, Any]:
+    """加载仓库内置的领域事件契约。"""
+    path = Path(__file__).resolve().parents[2] / "contracts" / "domain.schema.json"
+    return json.loads(path.read_text(encoding="utf-8"))
 
 
 def _timezone_is_explicit(value: str) -> bool:

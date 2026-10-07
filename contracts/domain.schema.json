@@ -19,10 +19,23 @@
     "event_type": {
       "type": "string",
       "enum": [
+        "QUALIFICATION_RECORDED",
+        "ASSIGNMENT_REGISTERED",
         "ASSIGNMENT_CLAIMED",
+        "ASSIGNMENT_RELEASED",
         "ASSET_UPLOADED",
+        "ASSET_UPLOAD_CONFLICTED",
+        "TRANSCRIPTION_COMMITTED",
+        "PLACE_REGISTERED",
+        "PLACE_NAME_RECORDED",
+        "PLACE_MERGED",
+        "NARRATIVE_RECORDED",
+        "SPATIAL_JUDGMENT_RECORDED",
         "CONSENT_UPDATED",
+        "CONSENT_EXPIRED",
+        "GUARDIAN_AUTHORIZATION_RECORDED",
         "REVIEW_COMPLETED",
+        "PUBLIC_VERSION_FROZEN",
         "SNAPSHOT_PUBLISHED"
       ]
     },
@@ -30,8 +43,14 @@
       "type": "string",
       "enum": [
         "field_assignment",
+        "training_qualification",
         "place_record",
+        "consent_record",
         "source_asset",
+        "transcription",
+        "spatial_judgment",
+        "expert_review",
+        "public_release",
         "archive_snapshot"
       ]
     },
@@ -52,17 +71,95 @@
     }
   },
   "payload_required_by_event": {
+    "QUALIFICATION_RECORDED": [
+      "student_ref",
+      "skill",
+      "valid_from",
+      "valid_until"
+    ],
+    "ASSIGNMENT_REGISTERED": [
+      "required_skill"
+    ],
+    "ASSIGNMENT_CLAIMED": [
+      "student_ref"
+    ],
+    "ASSIGNMENT_RELEASED": [
+      "student_ref"
+    ],
     "ASSET_UPLOADED": [
+      "business_key",
       "content_hash",
-      "captured_at"
+      "captured_at",
+      "uploader_ref",
+      "assignment_ref",
+      "authorized_scope",
+      "media_type"
+    ],
+    "ASSET_UPLOAD_CONFLICTED": [
+      "business_key",
+      "content_hash",
+      "existing_hash",
+      "reason"
+    ],
+    "TRANSCRIPTION_COMMITTED": [
+      "asset_ref",
+      "transcription_version",
+      "text_hash",
+      "author_ref"
+    ],
+    "PLACE_REGISTERED": [
+      "name",
+      "valid_from"
+    ],
+    "PLACE_NAME_RECORDED": [
+      "name",
+      "valid_from"
+    ],
+    "PLACE_MERGED": [
+      "surviving_place",
+      "merged_place"
+    ],
+    "NARRATIVE_RECORDED": [
+      "place_ref",
+      "narrator_ref",
+      "cohort",
+      "summary_hash"
+    ],
+    "SPATIAL_JUDGMENT_RECORDED": [
+      "place_ref",
+      "boundary_version",
+      "judgment",
+      "author_ref"
     ],
     "CONSENT_UPDATED": [
       "subject_ref",
       "scope"
     ],
+    "CONSENT_EXPIRED": [
+      "subject_ref",
+      "scope"
+    ],
+    "GUARDIAN_AUTHORIZATION_RECORDED": [
+      "subject_ref",
+      "guardian_ref",
+      "scope"
+    ],
+    "REVIEW_COMPLETED": [
+      "target_ref",
+      "outcome",
+      "reviewer_ref",
+      "review_kind"
+    ],
+    "PUBLIC_VERSION_FROZEN": [
+      "snapshot_ref",
+      "subject_ref",
+      "revoked_scopes",
+      "reason"
+    ],
     "SNAPSHOT_PUBLISHED": [
       "cutoff_at",
-      "visibility"
+      "visibility",
+      "asset_refs"
     ]
   },
   "additionalProperties": false

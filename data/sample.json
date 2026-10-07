@@ -5,5 +5,7 @@
   "aggregate_id": "field_archive-001",
   "occurred_at": "2026-09-25T10:00:00+08:00",
   "version": 1,
-  "payload": {}
+  "payload": {
+    "student_ref": "stu-2026-001"
+  }
 }
